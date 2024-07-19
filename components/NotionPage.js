@@ -73,9 +73,20 @@ const NotionPage = ({ post, className }) => {
             }
           }
 
-          const cards = document.getElementsByClassName('notion-collection-card')
-          for (const e of cards) {
-            e.removeAttribute('href')
+          // const cards = document.getElementsByClassName('notion-collection-card')
+          // for (const e of cards) {
+          //   e.removeAttribute('href')
+          // }
+          // 魔改下
+          if (window.location.pathname === '/links') {
+            const cards = document.getElementsByClassName('notion-collection-card')
+            for (const e of cards) {
+              const form = e.querySelector('form')
+              const action = form.getAttribute('action')
+              // 修改 e 元素的 href 值
+              e.href = action
+              e.target = '_blank'
+            }
           }
         }
       }, 800)
